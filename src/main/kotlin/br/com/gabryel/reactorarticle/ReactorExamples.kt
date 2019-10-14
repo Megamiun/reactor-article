@@ -1,12 +1,13 @@
-package br.com.gabryel.reatorarticle
+package br.com.gabryel.reactorarticle
 
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.core.publisher.Signal.subscribe
 import reactor.core.scheduler.Schedulers
 import kotlin.random.Random
 
 fun main() {
     wrapped { `creating and executing a Mono Stream`() }
+    wrapped { `creating and executing a Flux Stream`() }
     wrapped { `creating and executing a cold Mono Stream that has logic inside`() }
     wrapped { `creating and executing a hot Mono Stream that has logic inside`() }
     wrapped { `executing a hot Mono Stream and the cold stream that provides for it`() }
@@ -23,7 +24,22 @@ private fun `creating and executing a Mono Stream`() {
     }
 
     println("Subscribing to justOne")
-    justOne.subscribe { event -> printEvent(event) }
+    justOne
+        .doOnSuccess { event -> printEvent(event) }
+        .subscribe()
+}
+
+private fun `creating and executing a Flux Stream`() {
+
+    println("Creating Flux publisher multipleNumbers")
+    val multipleNumbers = Flux.just(1, 2, 3)
+    val test = Mono.just(0)
+
+    println("Subscribing to multipleNumbers")
+    multipleNumbers
+        .doOnNext { event -> printEvent(event) }
+        .doOnComplete { println("Event completed!") }
+        .subscribe()
 }
 
 private fun `creating and executing a cold Mono Stream that has logic inside`() {
