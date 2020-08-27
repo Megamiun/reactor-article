@@ -258,8 +258,8 @@ Quando não notado, os métodos servirão tanto para `Mono`s e `Flux`s. Caso con
     - **Flux.from** - Para criação de publicadores com lógica de obtenção de eventos.
 
 - Efeitos colaterais:
-    - **doOnNext - Relacionados ao lançamento de eventos dentro de um fluxo.
-    - **doOnError - Relacionados à erros dentro do fluxo.
+    - **doOnNext** - Relacionados ao lançamento de eventos dentro de um fluxo.
+    - **doOnError** - Relacionados à erros dentro do fluxo.
     - **Mono.doOnSuccess** - Relacionados à compleção de um fluxo. Semelhantea `doOnNext`, salvo quando o `Mono` é completado sem eventos, que ele é chamado com `null`.
     - **Flux.doOnCompleted** - Relacionados à compleção de um fluxo.
     
