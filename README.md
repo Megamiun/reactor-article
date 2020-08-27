@@ -234,58 +234,58 @@ Para executarmos
 
 ## Modelos
 
-- Event - Um sinal que será propagado pelo fluxo.
-- Publisher - Um objeto que pode publicar Events. 
-- Mono - Publisher que enviará 0..1 eventos ou um erro. Usado para aquisição de recursos simples e execução de código.
-- Flux - Publisher que enviará 0..N eventos e/ou um erro. Usado para aquisição de rescursos fragmentados ou para demonstrar mudança de estado.
+- **Event** - Um sinal que será propagado pelo fluxo.
+- **Publisher** - Um objeto que pode publicar Events. 
+- **Mono** - Publisher que enviará 0..1 eventos ou um erro. Usado para aquisição de recursos simples e execução de código.
+- **Flux** - Publisher que enviará 0..N eventos e/ou um erro. Usado para aquisição de rescursos fragmentados ou para demonstrar mudança de estado.
 
 ## Tipos de Inscrição
 
-- Hot Stream/Publisher - Inscrição na qual os eventos são pré calculados independente de se alguém está ouvindo o publisher.
-- Cold Stream/Publisher - Inscrição na qual os eventos são iniciados somente a partir do momento que alguém se inscreve no publisher.
+- **Hot Stream/Publisher** - Inscrição na qual os eventos são pré calculados independente de se alguém está ouvindo o publisher.
+- **Cold Stream/Publisher** - Inscrição na qual os eventos são iniciados somente a partir do momento que alguém se inscreve no publisher.
 
 ## Métodos importantes
 
 Quando não notado, os métodos servirão tanto para `Mono`s e `Flux`s. Caso contrário, ele será exclusivo do tipo citado.
 
 - Geração:
-    - just - Para criação de publicadores com contéudo pré-definido.
-    - defer - Para criação de publicadores com lógica de obtenção de eventos.
-    - Mono.fromCallable - Para criação de publicadores com lógica de obtenção de eventos.
-    - Mono.fromSupplier - Para criação de publicadores com lógica de obtenção de eventos.
-    - Mono.fromRunnable - Para criação de publicadores puramente lógicos e sem evento.
-    - Flux.fromIterable - Para criação de publicadores com contéudo pré-definido.
-    - Flux.from - Para criação de publicadores com lógica de obtenção de eventos.
+    - **just** - Para criação de publicadores com contéudo pré-definido.
+    - **defer** - Para criação de publicadores com lógica de obtenção de eventos.
+    - **Mono.fromCallable** - Para criação de publicadores com lógica de obtenção de eventos.
+    - **Mono.fromSupplier** - Para criação de publicadores com lógica de obtenção de eventos.
+    - **Mono.fromRunnable** - Para criação de publicadores puramente lógicos e sem evento.
+    - **Flux.fromIterable** - Para criação de publicadores com contéudo pré-definido.
+    - **Flux.from** - Para criação de publicadores com lógica de obtenção de eventos.
 
 - Efeitos colaterais:
-    - doOnNext - Relacionados ao lançamento de eventos dentro de um fluxo.
-    - doOnError - Relacionados à erros dentro do fluxo.
-    - Mono.doOnSuccess - Relacionados à compleção de um fluxo. Semelhantea `doOnNext`, salvo quando o `Mono` é completado sem eventos, que ele é chamado com `null`.
-    - Flux.doOnCompleted - Relacionados à compleção de um fluxo.
+    - **doOnNext - Relacionados ao lançamento de eventos dentro de um fluxo.
+    - **doOnError - Relacionados à erros dentro do fluxo.
+    - **Mono.doOnSuccess** - Relacionados à compleção de um fluxo. Semelhantea `doOnNext`, salvo quando o `Mono` é completado sem eventos, que ele é chamado com `null`.
+    - **Flux.doOnCompleted** - Relacionados à compleção de um fluxo.
     
 - Inscrição:
-    - subscribe - Ativa o fluxo e se inscreve para este.
-    - block - Bloqueia o contexto atual até ter o retorno da execução. O uso deste operador não é recomendado por não bater com as expectativas reactivas e só deve ser usado quando necessário.
+    - **subscribe** - Ativa o fluxo e se inscreve para este.
+    - **block** - Bloqueia o contexto atual até ter o retorno da execução. O uso deste operador não é recomendado por não bater com as expectativas reactivas e só deve ser usado quando necessário.
 
 - Definição de contexto:
-    - subscribeOn - Para definição de thread de execução para os publishers anteriores e posteriores.
-    - publishOn - Para definição de thread de execução para publishers posteriores.
+    - **subscribeOn** - Para definição de thread de execução para os publishers anteriores e posteriores.
+    - **publishOn** - Para definição de thread de execução para publishers posteriores.
 
 - Operadores funcionais:
-    - filter - Barra a passagem de itens que não batam com o predicado passado.
-    - map - Transforma cada item do fluxo em um novo item.
-    - flatMap - Transforma cada item do fluxo em uma lista de novos itens.
-    - zip - Cria um novo fluxo que combina os itens de mesma posição de dois fluxos.
-    - reduce - Aplica uma operação a cada componente da lista, tendo um resultado único final.
+    - **filter** - Barra a passagem de itens que não batam com o predicado passado.
+    - **map** - Transforma cada item do fluxo em um novo item.
+    - **flatMap** - Transforma cada item do fluxo em uma lista de novos itens.
+    - **zip** - Cria um novo fluxo que combina os itens de mesma posição de dois fluxos.
+    - **reduce** - Aplica uma operação a cada componente da lista, tendo um resultado único final.
 
 - Mudança de fluxo:
-    - then - Executa um outro publicador após o encerramento do atual.
-    - thenMany - Executa um outro publicador após o encerramento do atual.
-    - switchIfEmpty - Executa um outro publicador se não houverem eventos no momento de compleção.
+    - **then** - Executa um outro publicador após o encerramento do atual.
+    - **thenMany** - Executa um outro publicador após o encerramento do atual.
+    - **switchIfEmpty** - Executa um outro publicador se não houverem eventos no momento de compleção.
     
 - Tratamento de erros:
-    - onErrorResume - Executar um novo fluxo ao encontrar erros.
-    - onErrorMap - Transforma a exceção atual em uma nova exceção.
+    - **onErrorResume** - Executar um novo fluxo ao encontrar erros.
+    - **onErrorMap** - Transforma a exceção atual em uma nova exceção.
 
 ## Pros and Cons
 
